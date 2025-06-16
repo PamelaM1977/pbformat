@@ -329,12 +329,22 @@ function getSpreadLabels() {
 
 // Helper: Renumber all spread labels in order, starting from a given number
 function renumberSpreadLabels(startNumber = 2, spreadSize = 2) {
-  const labels = getSpreadLabels();
+  const contents = quill.getContents();
+  let labels = [];
+  let index = 0;
+  contents.ops.forEach(op => {
+    if (op.insert && op.insert.spread) {
+      labels.push({ index, value: op.insert.spread });
+      index += 1;
+    } else if (typeof op.insert === 'string') {
+      index += op.insert.length;
+    }
+  });
+
   let current = startNumber;
   labels.forEach(label => {
-    const newLabel = getSpreadLabel(current, spreadSize);
+    const newLabel = `${current}-${current + spreadSize - 1}`;
     if (label.value !== newLabel) {
-      // Replace the label at its index
       quill.deleteText(label.index, 1, 'silent');
       quill.insertEmbed(label.index, 'spread', newLabel, 'silent');
     }

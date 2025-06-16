@@ -52,13 +52,13 @@ button .material-icons {
 }
 
 /* Custom toolbar styling */
-.ql-toolbar {
+/*.ql-toolbar {
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
     background-color: #f8f9fa;
     padding: 8px;
-} 
+} */
 #counter {
   border: 1px solid #ccc;
   border-width: 0px 1px 1px 1px;
