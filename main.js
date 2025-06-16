@@ -144,52 +144,7 @@ function createWindow() {
         }
       ]
     },
-    {
-      label: 'Layout',
-      submenu: [
         {
-          label: '24-page layout',
-          type: 'radio',
-          checked: preferences.layout === 24,
-          click: () => {
-            preferences.layout = 24;
-            savePreferences();
-            mainWindow.webContents.send('layout-changed', 24);
-          }
-        },
-        {
-          label: '32-page layout',
-          type: 'radio',
-          checked: preferences.layout === 32,
-          click: () => {
-            preferences.layout = 32;
-            savePreferences();
-            mainWindow.webContents.send('layout-changed', 32);
-          }
-        },
-        {
-          label: '40-page layout',
-          type: 'radio',
-          checked: preferences.layout === 40,
-          click: () => {
-            preferences.layout = 40;
-            savePreferences();
-            mainWindow.webContents.send('layout-changed', 40);
-          }
-        },
-        {
-          label: '48-page layout',
-          type: 'radio',
-          checked: preferences.layout === 48,
-          click: () => {
-            preferences.layout = 48;
-            savePreferences();
-            mainWindow.webContents.send('layout-changed', 48);
-          }
-        }
-      ]
-    },
-    {
       label: 'View',
       submenu: [
         {
@@ -228,26 +183,24 @@ function createWindow() {
       submenu: [
         {
           label: 'Default Font',
+          accelerator: 'CmdOrCtrl+2',
           click: () => mainWindow.webContents.send('apply-format', 'default')
         },
         {
           label: 'Illustration',
+          accelerator: 'CmdOrCtrl+3',
           click: () => mainWindow.webContents.send('apply-format', 'illustration')
         },
         {
           label: 'Title',
+          accelerator: 'CmdOrCtrl+1',
           click: () => mainWindow.webContents.send('apply-format', 'title')
         },
         { type: 'separator' },
         {
           label: 'Add Spread Label',
-          accelerator: 'CmdOrCtrl+L',
+          accelerator: 'CmdOrCtrl+4',
           click: () => mainWindow.webContents.send('add-spread')
-        },
-        {
-          label: 'Delete Spread Label',
-          accelerator: 'CmdOrCtrl+Shift+L',
-          click: () => mainWindow.webContents.send('delete-spread')
         }
       ]
     }

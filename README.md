@@ -1,5 +1,5 @@
 # PB Format
-A text editor, providing a clean and modern interface for formatting your stories for Picture bOok formats.
+A text editor, providing a clean and modern interface for formatting your stories for Picture book formats.
 
 ## Features
    - Support Common Picture Book Layout Formats

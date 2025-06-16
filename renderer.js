@@ -305,3 +305,55 @@ saveButton.addEventListener('click', async () => {
         await saveFileAs();
     }
 });
+
+// Helper: Generate spread label text given a start number and spread size
+function getSpreadLabel(start, spreadSize = 2) {
+  return `${start}-${start + spreadSize - 1}`;
+}
+
+// Helper: Find all spread labels and their positions
+function getSpreadLabels() {
+  const contents = quill.getContents();
+  let labels = [];
+  let index = 0;
+  contents.ops.forEach(op => {
+    if (op.insert && op.insert.spread) {
+      labels.push({ index, value: op.insert.spread });
+      index += 1; // custom blot counts as 1
+    } else if (typeof op.insert === 'string') {
+      index += op.insert.length;
+    }
+  });
+  return labels;
+}
+
+// Helper: Renumber all spread labels in order, starting from a given number
+function renumberSpreadLabels(startNumber = 2, spreadSize = 2) {
+  const labels = getSpreadLabels();
+  let current = startNumber;
+  labels.forEach(label => {
+    const newLabel = getSpreadLabel(current, spreadSize);
+    if (label.value !== newLabel) {
+      // Replace the label at its index
+      quill.deleteText(label.index, 1, 'silent');
+      quill.insertEmbed(label.index, 'spread', newLabel, 'silent');
+    }
+    current += spreadSize;
+  });
+}
+
+// Listen for text changes and renumber if a spread label was deleted
+quill.on('text-change', (delta, oldDelta, source) => {
+  // Check if any spread label was deleted
+  let spreadDeleted = false;
+  delta.ops.forEach(op => {
+    if (op.delete) {
+      // After a delete, renumber all spread labels
+      spreadDeleted = true;
+    }
+  });
+  if (spreadDeleted) {
+    // Adjust these numbers as needed for your book layout
+    renumberSpreadLabels(2, 2);
+  }
+});

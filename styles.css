@@ -48,7 +48,7 @@ button .material-icons {
 
 .ql-editor {
     padding: 20px;
-    background-color: #FCF5E5;
+    background-color: #f4f4f4;
 }
 
 /* Custom toolbar styling */
@@ -69,7 +69,20 @@ button .material-icons {
 .pb-default { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 2.0; }
 .pb-illustration { font-family: 'Times New Roman', Times, serif; font-size: 12pt; color: blue; text-align: right; }
 .pb-title { font-family: 'Times New Roman', Times, serif; font-size: 16pt; text-align: center; text-transform: uppercase; }
-.spread-label { font-weight: bold; background: #f9f9f9; border-bottom: 1px solid #e0e0e0; padding: 8px 0; margin: 16px 0 8px 0; text-align: center; user-select: none; pointer-events: none; }
+.spread-label {
+    display: inline-block;
+    font-weight: bold;
+    background: #f4f4f4;
+    color: #333;
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin: 0 4px 0 0;
+    vertical-align: baseline;
+    text-align: left;
+    user-select: none;
+    pointer-events: none;
+    border: none;
+}
 .settings-panel {
     padding: 10px 15px;
     background: #f5f5f5;
